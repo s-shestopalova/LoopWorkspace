@@ -287,6 +287,15 @@ jobs:
           basal_lock \
           live_activity
 
+    
+          echo "Downloading code to support xdrip-client-swift"
+          git clone https://github.com/johandegraeve/xdrip-client-swift-1.git xdrip-client-swift
+          echo "checking out the xdrip-client-swift commit that works with Loop 3.4.0 or later"
+          cd xdrip-client-swift; git checkout e618d67 --quiet; cd ..
+          echo "Applying customization to add CGM support to Loop for xDrip4iOS"
+          curl https://github.com/loopandlearn/LoopWorkspace/commit/4097af116ab869084329660c4761bbddff5b7d03.patch | git apply
+          
+
           # the final customization listed above CANNOT have a continuation character
           # more customizations can be pasted after this line
           
